@@ -1,0 +1,20 @@
+# 秘密（データベース接続情報）
+db.properties
+
+# Eclipse
+.metadata/
+.settings/
+.project
+.classpath
+bin/
+build/
+
+# Java
+*.class
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

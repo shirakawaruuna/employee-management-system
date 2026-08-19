@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Meiryo", sans-serif;
+    background: #f0f2f5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ヘッダー */
+.header {
+    background: #1a3a5c;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+.header-title { color: white; font-size: 16px; font-weight: bold; }
+.header-right { display: flex; align-items: center; gap: 16px; }
+.header-user  { color: #b0c4d8; font-size: 13px; }
+.logout-btn {
+    color: #ffcdd2;
+    font-size: 13px;
+    border: 1px solid #ffcdd2;
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* レイアウト */
+.layout { display: flex; flex: 1; overflow: hidden; }
+
+/* サイドバー */
+.sidebar { background: #1e4976; width: 160px; flex-shrink: 0; padding-top: 8px; }
+.sidebar-item {
+    display: block;
+    color: #b0c4d8;
+    font-size: 13px;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+.sidebar-item:hover,
+.sidebar-item.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-left: 3px solid white;
+}
+
+/* メインエリア */
+.main { flex: 1; padding: 28px 32px; background: white; overflow-y: auto; }
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e0e7ef;
+}
+.main-title { color: #1a3a5c; font-size: 18px; }
+
+/* ボタン */
+/* ボタン共通の土台 */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    line-height: 1;
+}
+
+.btn-primary {
+    background: #1a3a5c;
+    color: white;
+}
+.btn-primary:hover { opacity: 0.85; }
+
+.btn-detail {
+    background: #e8f0fb;
+    color: #1a3a5c;
+}
+.btn-detail:hover { background: #c5d8f5; }
+
+.btn-danger {
+    background: #c0392b;
+    color: white;
+}
+.btn-danger:hover { opacity: 0.85; }
+
+/* テーブル */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.data-table thead {
+    background: #1a3a5c;
+    color: white;
+}
+.data-table th {
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: bold;
+}
+.data-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #e0e7ef;
+}
+.data-table tbody tr:hover {
+    background: #f5f8fd;
+}
+
+/* 行間 */
+.detail-info {
+    line-height: 2;
+}
+
+.detail-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* フォーム（登録・編集共通） */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #1a3a5c;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #1a3a5c;
+}

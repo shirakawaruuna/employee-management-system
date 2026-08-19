@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Meiryo", sans-serif;
+    background: #f0f2f5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ヘッダー */
+.header {
+    background: #1a3a5c;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header-title {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-right: 6px
+}
+
+.header-user {
+    color: #b0c4d8;
+    font-size: 13px;
+}
+
+.logout-btn {
+    color: #ffcdd2;
+    font-size: 13px;
+    border: 1px solid #ffcdd2;
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* サイドバー＋メインのレイアウト */
+.layout {
+    display: flex;
+    flex: 1;
+}
+
+/* サイドバー */
+.sidebar {
+    background: #1e4976;
+    width: 160px;
+    flex-shrink: 0;
+    padding-top: 8px;
+}
+
+.sidebar-item {
+    display: block;
+    color: #b0c4d8;
+    font-size: 13px;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-left: 3px solid white;
+}
+
+/* メインコンテンツ */
+.main {
+    flex: 1;
+    padding: 28px 32px;
+    background: white;
+}
+
+.main-title {
+    color: #1a3a5c;
+    font-size: 18px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e0e7ef;
+}
