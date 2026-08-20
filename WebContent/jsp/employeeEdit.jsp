@@ -24,25 +24,39 @@
 
 			<p>ID:${employee.id}</p>
 			<div class="form-group">
-				<label>氏名</label> <input type="text" name="name"
-					value="${employee.name}">
+				<label>氏名</label>
+				<input type="text" name="name" id="name" value="${name != null ? name : employee.name}"
+				class="${nameError != null ? 'input-error' : ''}">
+				 <br><span class="error-text">${nameError}</span>
+				<br> <span id="name-error" class="error-text"></span>
 			</div>
+
 			<div class="form-group">
-				<label>年齢</label><input type="text" name="age"
-					value="${employee.age}">
+				<label>年齢</label>
+				<input type="text" name="age" id="age" value="${age != null ? age : employee.age}"
+				class="${ageError != null ? 'input-error' : ''}">
+				<br> <span class="error-text">${ageError}</span>
+				<br> <span id="age-error" class="error-text"></span>
 			</div>
+
 			<div class="form-group">
-				<label>部署</label><input type="text" name="department"
-					value="${employee.department}">
+				<label>部署</label>
+				<input type="text" name="department" id="department"
+				value="${department != null ? department : employee.department}"
+				class="${departmentError != null ? 'input-error' : ''}">
+				<br><span class="error-text">${departmentError}</span>
+				<br><span id="department-error" class="error-text"></span>
 			</div>
+
 			<div class="form-group">
-				<label>メール</label><input type="text" name="email"
-					value="${employee.email}">
+				<label>メール</label>
+				<input type="text" name="email" value="${email != null ? email : employee.email}"
+				class="${emailError != null ? 'input-error' : ''}">
+				<br><span class="error-text">${emailError}</span>
 			</div>
 
 			<div class="detail-actions">
-				<input type="submit" class="btn btn-primary" value="更新">
-
+				<input type="submit" class="btn btn-primary" id="submit-btn" value="更新">
 			</div>
 		</form>
 		<c:if test="${loginUser.role == 'admin'}">
@@ -61,5 +75,8 @@
 
 	</div>
 	</div>
+
+	<!-- JavaScript -->
+	<script src="${pageContext.request.contextPath}/js/validation.js"></script>
 </body>
 </html>

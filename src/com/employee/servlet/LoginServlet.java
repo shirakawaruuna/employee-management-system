@@ -30,18 +30,33 @@ public class LoginServlet extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", emp);
-		    if ("admin".equals(emp.getRole())) {
-		        // 管理者 → 従業員一覧へ
-		        response.sendRedirect(request.getContextPath() + "/EmployeeListServlet");
-		    } else {
-		        // 一般社員 → マイページへ
-		        response.sendRedirect(request.getContextPath() + "/MyPageServlet");
-		    }
+			if ("admin".equals(emp.getRole())) {
+				// 管理者 → 従業員一覧へ
+				response.sendRedirect(request.getContextPath() + "/EmployeeListServlet");
+			} else {
+				// 一般社員 → マイページへ
+				response.sendRedirect(request.getContextPath() + "/MyPageServlet");
+			}
 		} else {
-			// ログイン失敗
-			request.setAttribute("error", "IDまたはパスワードが違います");
-			request.getRequestDispatcher("login.jsp")
-					.forward(request, response);
+			if (id == null || id.isEmpty()
+					|| pass == null || pass.isEmpty()) {
+				// ログイン失敗
+				request.setAttribute("error", "ログイン情報を入力してください。");
+
+				//入力値はそのまま
+				request.setAttribute("id", id);
+				request.getRequestDispatcher("login.jsp")
+						.forward(request, response);
+			} else {
+				// ログイン失敗
+				request.setAttribute("error", "IDまたはパスワードが違います");
+
+				//入力値はそのまま
+				request.setAttribute("id", id);
+				request.getRequestDispatcher("login.jsp")
+						.forward(request, response);
+			}
+
 		}
 	}
 

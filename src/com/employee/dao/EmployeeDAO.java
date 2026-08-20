@@ -106,7 +106,7 @@ public class EmployeeDAO {
 
 	public void update(Employee emp) {
 
-		String sql = "UPDATE employee SET name = ?, age = ?, department = ?, email = ? WHERE id = ?";
+		String sql = "UPDATE employee SET name = ?, age = ?, department = ?, email = ?, passwor = ? WHERE id = ?";
 
 		try (
 				Connection con = DBUtil.getConnection();
@@ -116,7 +116,8 @@ public class EmployeeDAO {
 			ps.setInt(2, emp.getAge());
 			ps.setString(3, emp.getDepartment());
 			ps.setString(4, emp.getEmail());
-			ps.setInt(5, emp.getId());
+			ps.setString(5, emp.getPassword());
+			ps.setInt(6, emp.getId());
 
 			ps.executeUpdate();
 

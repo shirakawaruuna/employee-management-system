@@ -101,6 +101,10 @@ body {
 }
 .btn-danger:hover { opacity: 0.85; }
 
+.btn-right {
+    margin-left: auto;
+}
+
 /* テーブル */
 .data-table {
     width: 100%;
@@ -161,4 +165,17 @@ body {
 .form-group input:focus {
     outline: none;
     border-color: #1a3a5c;
+}
+
+/* エラー */
+.error-text {
+    color: red;
+    font-size: 12px;
+}
+.form-group input.input-error {
+    border-color: red;
+}
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

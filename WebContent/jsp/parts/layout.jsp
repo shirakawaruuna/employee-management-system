@@ -22,12 +22,12 @@
 			<a href="${pageContext.request.contextPath}/jsp/employeeRegist.jsp"
 				class="sidebar-item <c:if test="${param.menu == 'regist'}">active</c:if>">新規登録</a>
 			<a href="#"
-				class="sidebar-item <c:if test="${param.menu == 'work'}">active</c:if>">勤怠管理</a>
+				class="sidebar-item <c:if test="${param.menu == 'pass'}">active</c:if>">パスワード変更</a>
 		</c:if>
 		<c:if test="${loginUser.role == 'user'}">
 			<a href="${pageContext.request.contextPath}/MyPageServlet"
 				class="sidebar-item <c:if test="${param.menu == 'list'}">active</c:if>">マイページ</a>
 			<a href="#"
-				class="sidebar-item <c:if test="${param.menu == 'time'}">active</c:if>">勤怠入力</a>
+				class="sidebar-item <c:if test="${param.menu == 'pass'}">active</c:if>">パスワード変更</a>
 		</c:if>
 	</div>

@@ -1,6 +1,7 @@
 package com.employee.servlet;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.employee.dao.EmployeeDAO;
 import com.employee.model.Employee;
+import com.employee.validator.EmployeeValidator;
 
 @WebServlet("/EmployeeUpdateServlet")
 public class EmployeeUpdateServlet extends HttpServlet {
@@ -21,10 +23,37 @@ public class EmployeeUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		int id = Integer.parseInt(request.getParameter("id"));
+		//文字列で受け取る
 		String name = request.getParameter("name");
-		int age = Integer.parseInt(request.getParameter("age"));
+		String ageStr = request.getParameter("age");
 		String department = request.getParameter("department");
 		String email = request.getParameter("email");
+
+		// バリデーターにチェックしてもらう
+		EmployeeValidator validator = new EmployeeValidator();
+		Map<String, String> errors = validator.validate(name, ageStr, department, email, null);
+
+		if (!errors.isEmpty()) {
+		    // エラーメッセージをセット
+		    for (Map.Entry<String, String> entry : errors.entrySet()) {
+		        request.setAttribute(entry.getKey(), entry.getValue());
+		    }
+		    // 入力値をセット
+		    request.setAttribute("name", name);
+		    request.setAttribute("age", ageStr);
+		    request.setAttribute("department", department);
+		    request.setAttribute("email", email);
+
+		    // employee を取り直して渡す（idから）
+		    EmployeeDAO dao = new EmployeeDAO();
+		    Employee emp = dao.findById(id);
+		    request.setAttribute("employee", emp);
+
+		    request.getRequestDispatcher("jsp/employeeEdit.jsp").forward(request, response);
+		    return;
+		}
+
+		int age = Integer.parseInt(ageStr);
 
 		Employee emp = new Employee();
 		emp.setId(id);
@@ -41,12 +70,9 @@ public class EmployeeUpdateServlet extends HttpServlet {
 
 		if ("admin".equals(loginUser.getRole())) {
 			response.sendRedirect("EmployeeListServlet");
-		}else {
+		} else {
 			response.sendRedirect("MyPageServlet");
 		}
-
-
-
 
 	}
 
