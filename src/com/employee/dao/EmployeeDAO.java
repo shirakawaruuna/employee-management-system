@@ -46,7 +46,7 @@ public class EmployeeDAO {
 
 		Employee emp = null;
 
-		String sql = "SELECT * FROM employee WHERE id = ? AND password = ?";
+		String sql = "SELECT * FROM employee WHERE id = ? AND BINARY password = ?";
 
 		try (
 				Connection con = DBUtil.getConnection();
@@ -96,6 +96,7 @@ public class EmployeeDAO {
 				emp.setAge(rs.getInt("age"));
 				emp.setDepartment(rs.getString("department"));
 				emp.setEmail(rs.getString("email"));
+				emp.setPassword(rs.getString("password"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,7 +107,7 @@ public class EmployeeDAO {
 
 	public void update(Employee emp) {
 
-		String sql = "UPDATE employee SET name = ?, age = ?, department = ?, email = ?, passwor = ? WHERE id = ?";
+		String sql = "UPDATE employee SET name = ?, age = ?, department = ?, email = ? WHERE id = ?";
 
 		try (
 				Connection con = DBUtil.getConnection();
@@ -116,8 +117,25 @@ public class EmployeeDAO {
 			ps.setInt(2, emp.getAge());
 			ps.setString(3, emp.getDepartment());
 			ps.setString(4, emp.getEmail());
-			ps.setString(5, emp.getPassword());
-			ps.setInt(6, emp.getId());
+			ps.setInt(5, emp.getId());
+
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void pass(Employee emp) {
+
+		String sql = "UPDATE employee SET password = ? WHERE id = ?";
+
+		try (
+				Connection con = DBUtil.getConnection();
+				PreparedStatement ps = con.prepareStatement(sql);) {
+
+			ps.setString(1, emp.getPassword());
+			ps.setInt(2, emp.getId());
 
 			ps.executeUpdate();
 

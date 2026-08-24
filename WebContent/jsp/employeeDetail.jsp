@@ -30,14 +30,18 @@
 			<a href="EmployeeEditServlet?id=${employee.id}"
 				class="btn btn-primary">編集</a>
 			<c:if test="${loginUser.role == 'admin'}">
-				<a href="EmployeeDeleteServlet?id=${employee.id}"
-					class="btn btn-danger">削除</a>
+				<a href="#" class="btn btn-danger confirm-btn"
+					data-message="本当に削除しますか?"
+					data-url="${pageContext.request.contextPath}/EmployeeDeleteServlet?id=${employee.id}">削除</a>
 				<a href="EmployeeListServlet" class="btn btn-detail btn-right">一覧へ戻る</a>
 			</c:if>
 
 		</div>
 	</div>
 	</div>
+
+	<!-- JavaScript -->
+	<script src="${pageContext.request.contextPath}/js/confirm-modal.js"></script>
 
 </body>
 </html>

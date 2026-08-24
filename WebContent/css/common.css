@@ -179,3 +179,44 @@ body {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+/* 確認モーダル */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-overlay.show {
+    display: flex;
+}
+.modal-box {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    min-width: 300px;
+    text-align: center;
+}
+.modal-message {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* 成功メッセージ */
+.success-message {
+    color: #1a3a5c;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}

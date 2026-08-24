@@ -16,7 +16,9 @@
 	</jsp:include>
 	<!-- メインコンテンツ -->
 	<div class="main">
-		<h2 class="main-title">従業員編集</h2>
+		<div class="main-header">
+			<h2 class="main-title">従業員編集</h2>
+		</div>
 
 		<form action="EmployeeUpdateServlet" method="post">
 
@@ -24,39 +26,40 @@
 
 			<p>ID:${employee.id}</p>
 			<div class="form-group">
-				<label>氏名</label>
-				<input type="text" name="name" id="name" value="${name != null ? name : employee.name}"
-				class="${nameError != null ? 'input-error' : ''}">
-				 <br><span class="error-text">${nameError}</span>
-				<br> <span id="name-error" class="error-text"></span>
+				<label>氏名</label> <input type="text" name="name" id="name"
+					value="${name != null ? name : employee.name}"
+					class="${nameError != null ? 'input-error' : ''}"> <br>
+				<span class="error-text">${nameError}</span> <br> <span
+					id="name-error" class="error-text"></span>
 			</div>
 
 			<div class="form-group">
-				<label>年齢</label>
-				<input type="text" name="age" id="age" value="${age != null ? age : employee.age}"
-				class="${ageError != null ? 'input-error' : ''}">
-				<br> <span class="error-text">${ageError}</span>
-				<br> <span id="age-error" class="error-text"></span>
+				<label>年齢</label> <input type="text" name="age" id="age"
+					value="${age != null ? age : employee.age}"
+					class="${ageError != null ? 'input-error' : ''}"> <br>
+				<span class="error-text">${ageError}</span> <br> <span
+					id="age-error" class="error-text"></span>
 			</div>
 
 			<div class="form-group">
-				<label>部署</label>
-				<input type="text" name="department" id="department"
-				value="${department != null ? department : employee.department}"
-				class="${departmentError != null ? 'input-error' : ''}">
-				<br><span class="error-text">${departmentError}</span>
-				<br><span id="department-error" class="error-text"></span>
+				<label>部署</label> <input type="text" name="department"
+					id="department"
+					value="${department != null ? department : employee.department}"
+					class="${departmentError != null ? 'input-error' : ''}"> <br>
+				<span class="error-text">${departmentError}</span> <br> <span
+					id="department-error" class="error-text"></span>
 			</div>
 
 			<div class="form-group">
-				<label>メール</label>
-				<input type="text" name="email" value="${email != null ? email : employee.email}"
-				class="${emailError != null ? 'input-error' : ''}">
-				<br><span class="error-text">${emailError}</span>
+				<label>メール</label> <input type="text" name="email"
+					value="${email != null ? email : employee.email}"
+					class="${emailError != null ? 'input-error' : ''}"> <br>
+				<span class="error-text">${emailError}</span>
 			</div>
 
 			<div class="detail-actions">
-				<input type="submit" class="btn btn-primary" id="submit-btn" value="更新">
+				<input type="submit" class="btn btn-primary confirm-btn"
+					id="submit-btn" data-message="入力内容を更新します。よろしいですか？" value="更新">
 			</div>
 		</form>
 		<c:if test="${loginUser.role == 'admin'}">
@@ -78,5 +81,7 @@
 
 	<!-- JavaScript -->
 	<script src="${pageContext.request.contextPath}/js/validation.js"></script>
+	<script src="${pageContext.request.contextPath}/js/confirm-modal.js"></script>
+
 </body>
 </html>

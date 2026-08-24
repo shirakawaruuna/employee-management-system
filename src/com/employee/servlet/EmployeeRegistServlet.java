@@ -2,6 +2,7 @@ package com.employee.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,15 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.employee.dao.EmployeeDAO;
 import com.employee.model.Employee;
 
-@WebServlet("/EmployeeEditServlet")
-public class EmployeeEditServlet extends HttpServlet {
+/**
+ * Servlet implementation class EmployeeRegistServlet
+ */
+@WebServlet("/EmployeeRegistServlet")
+public class EmployeeRegistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 
 		if (session == null) {
@@ -32,22 +34,20 @@ public class EmployeeEditServlet extends HttpServlet {
 			return;
 		}
 
-		int id = Integer.parseInt(request.getParameter("id"));
-
-		if (!"admin".equals(loginUser.getRole()) && id != loginUser.getId()) {
-		    response.sendRedirect("MyPageServlet");
-		    return;
+		if (!"admin".equals(loginUser.getRole())) {
+			response.sendRedirect("MyPageServlet");
+			return;
 		}
 
-		EmployeeDAO dao = new EmployeeDAO();
-		Employee emp = dao.findById(id);
 
-		request.setAttribute("employee", emp);
-		request.getRequestDispatcher("jsp/employeeEdit.jsp").forward(request, response);
+
+		RequestDispatcher rd = request.getRequestDispatcher("jsp/employeeRegist.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

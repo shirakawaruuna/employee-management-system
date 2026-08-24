@@ -18,7 +18,7 @@
 	<div class="main">
 		<div class="main-header">
 			<h2 class="main-title">従業員一覧</h2>
-			<a href="${pageContext.request.contextPath}/jsp/employeeRegist.jsp"
+			<a href="${pageContext.request.contextPath}/EmployeeRegistServlet"
 				class="btn btn-primary">＋ 新規登録</a>
 		</div>
 
@@ -46,8 +46,10 @@
 			</tbody>
 		</table>
 	</div>
-
 	</div>
+
+	<!-- JavaScript -->
+	<script src="${pageContext.request.contextPath}/js/confirm-modal.js"></script>
 
 </body>
 </html>

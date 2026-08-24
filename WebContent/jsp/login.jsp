@@ -30,5 +30,8 @@
 
 		</form>
 	</div>
+
+	<!-- JavaScript -->
+	<script src="${pageContext.request.contextPath}/js/confirm-modal.js"></script>
 </body>
 </html>
