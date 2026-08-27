@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.employee.dao.EmployeeDAO;
 import com.employee.model.Employee;
 
@@ -36,7 +38,7 @@ public class PasswordChangeServlet extends HttpServlet {
 					.forward(request, response);
 			return;
 
-		} else if (!currentPassword.equals(emp.getPassword())) {
+		} else if (!BCrypt.checkpw(currentPassword, emp.getPassword())) {
 
 			request.setAttribute("passwordError", "現在のパスワードが間違っています。正しいパスワードを入力して下さい。");
 
@@ -66,10 +68,9 @@ public class PasswordChangeServlet extends HttpServlet {
 			return;
 		}
 
+
 		emp.setPassword(newPassword);
 		dao.pass(emp);
-		emp.setId(id);
-		emp.setPassword(newPassword);
 
 		request.setAttribute("successMessage", "パスワードを変更しました");
 		request.getRequestDispatcher("jsp/passwordChange.jsp").forward(request, response);

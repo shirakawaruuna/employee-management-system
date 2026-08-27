@@ -8,6 +8,7 @@ db.properties
 .classpath
 bin/
 build/
+target/
 
 # Java
 *.class

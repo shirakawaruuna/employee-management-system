@@ -140,8 +140,12 @@ public class EmployeeDAO {
 				Connection con = DBUtil.getConnection();
 				PreparedStatement ps = con.prepareStatement(sql);) {
 
-			ps.setString(1, emp.getPassword());
+			// ハッシュ化
+			String hashedPassword = BCrypt.hashpw(emp.getPassword(), BCrypt.gensalt());
+			ps.setString(1, hashedPassword);
 			ps.setInt(2, emp.getId());
+
+
 
 			ps.executeUpdate();
 
