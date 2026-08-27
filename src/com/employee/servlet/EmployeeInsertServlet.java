@@ -47,7 +47,7 @@ public class EmployeeInsertServlet extends HttpServlet {
 		String ageStr = request.getParameter("age");
 		String department = request.getParameter("department");
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String password = request.getParameter("newpassword");
 
 		// バリデーターにチェックしてもらう
 		EmployeeValidator validator = new EmployeeValidator();

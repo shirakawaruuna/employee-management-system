@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.employee.model.Employee;
 import com.employee.util.DBUtil;
 
@@ -46,18 +48,21 @@ public class EmployeeDAO {
 
 		Employee emp = null;
 
-		String sql = "SELECT * FROM employee WHERE id = ? AND BINARY password = ?";
+		String sql = "SELECT * FROM employee WHERE id = ? ";
 
 		try (
 				Connection con = DBUtil.getConnection();
 				PreparedStatement ps = con.prepareStatement(sql);) {
 
 			ps.setString(1, id);
-			ps.setString(2, pass);
 
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
+
+				String dbHash = rs.getString("password");
+
+			    if (BCrypt.checkpw(pass, dbHash)) {
 
 				emp = new Employee();
 
@@ -66,8 +71,9 @@ public class EmployeeDAO {
 				emp.setAge(rs.getInt("age"));
 				emp.setDepartment(rs.getString("department"));
 				emp.setEmail(rs.getString("email"));
-				emp.setPassword(rs.getString("password"));
 				emp.setRole(rs.getString("role"));
+
+			    }
 			}
 
 		} catch (Exception e) {
@@ -171,7 +177,9 @@ public class EmployeeDAO {
 			ps.setInt(2, emp.getAge());
 			ps.setString(3, emp.getDepartment());
 			ps.setString(4, emp.getEmail());
-			ps.setString(5, emp.getPassword());
+			//パスワードはハッシュ化
+			String hashedPassword = BCrypt.hashpw(emp.getPassword(), BCrypt.gensalt());
+			ps.setString(5, hashedPassword);
 
 			ps.executeUpdate();
 
